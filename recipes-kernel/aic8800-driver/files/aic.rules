@@ -1,0 +1,1 @@
+SUBSYSTEM=="aic8800", MODE="0666"
