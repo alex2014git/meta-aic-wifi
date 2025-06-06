@@ -24,6 +24,14 @@ modules:
 	@echo "    CROSS_COMPILE = $(CROSS_COMPILE)"
 	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) modules
 
+modules_install:
+	@echo "==> Installing AIC8800 modules with:"
+	@echo "    KERNEL_SRC = $(KERNEL_SRC)"
+	@echo "    ARCH = $(ARCH)"
+	@echo "    CROSS_COMPILE = $(CROSS_COMPILE)"
+	@echo "    INSTALL_MOD_PATH = $(INSTALL_MOD_PATH)"
+	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) INSTALL_MOD_PATH=$(INSTALL_MOD_PATH) modules_install
+
 clean:
 	$(MAKE) -C aic_load_fw clean
 	$(MAKE) -C aic8800_fdrv clean
