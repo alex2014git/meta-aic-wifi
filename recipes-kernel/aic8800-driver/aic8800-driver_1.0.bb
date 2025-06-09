@@ -12,7 +12,11 @@ SRC_URI = "file://driver/ \
 
 S = "${WORKDIR}/driver"
 
-# 重点改这里：用 do_install:append()
+do_configure() {
+    # Skip do_configure because Makefile does not support 'oldconfig'
+    :
+}
+
 do_install:append() {
     install -d ${D}/lib/firmware/aic8800D80
     cp -r ${WORKDIR}/fw/aic8800D80/* ${D}/lib/firmware/aic8800D80/
@@ -25,5 +29,7 @@ FILES:${PN} += " \
     /lib/firmware/aic8800D80 \
     /etc/udev/rules.d/aic.rules \
 "
+
+DEPENDS += "virtual/kernel"
 
 INSANE_SKIP:${PN} += "installed-vs-shipped"
