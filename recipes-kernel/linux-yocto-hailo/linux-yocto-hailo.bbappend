@@ -4,8 +4,8 @@ FILESEXTRAPATHS:prepend := "${THISDIR}:"
 WIFI_MODE ??= "wifi-usb"
 
 # 根据 WIFI_MODE 决定用哪些 cfg
-WIFI_CFG_FILES = "${@'file://cfg/aic8800-wifi.cfg file://cfg/usb-support.cfg' \
-    if d.getVar('WIFI_MODE') == 'with-usb' else 'file://cfg/aic8800-wifi.cfg'}"
+WIFI_CFG_FILES = "${@'file://aic8800-wifi.cfg file://usb-support.cfg' \
+    if d.getVar('WIFI_MODE') == 'with-usb' else 'file://aic8800-wifi.cfg'}"
 
 # 把 cfg 文件加入 SRC_URI
 SRC_URI:append = " ${WIFI_CFG_FILES}"
@@ -15,7 +15,7 @@ SRC_URI:append = " ${WIFI_CFG_FILES}"
 #    for cfg_file in ${WIFI_CFG_FILES}; do
 #        fname=$(basename ${@cfg_file.replace('file://', '')})
 #        echo "Appending $fname to .config..."
-#        cat ${WORKDIR}/cfg/$fname >> ${B}/.config
+#        cat ${WORKDIR}/$fname >> ${B}/.config
 #    done
 #}
 
